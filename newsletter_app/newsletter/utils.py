@@ -5,7 +5,7 @@ from newsletter_app import mail
 
 def send_newsletter_email(newsletter, articles, subject, to, cc, bcc):
     msg = Message(subject=subject,
-                  sender='noreply@newsletter-generator.com',
+                  sender='noreply@email-newsletter-generator.com',
                   recipients=to,
                   cc=cc,
                   bcc=bcc)
