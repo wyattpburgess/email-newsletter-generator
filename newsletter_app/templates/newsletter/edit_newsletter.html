@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% set active_page = "manage" %}
+{% block content %}
+{% include "newsletter/newletter_form.html"%}
+<h2>Manage Articles</h2>
+<div class="mb-3 mt-3">
+<a class="btn btn-outline-primary waves-effect" href="{{ url_for('newsletter.preview', newsletter_id=newsletter_id) }}">Preview</a>
+<a class="btn btn-outline-info waves-effect" href="{{ url_for('newsletter.article', newsletter_id=newsletter_id) }}">Add Article</a>
+</div>
+<table id="manage_articles" class="table" width="100%">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Text</th>
+      <th class="no-sort">Manage</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for article in articles %}
+    <tr>
+      <td>{{ article.date.strftime('%b %d, %Y') }}</td>
+      <td>{{ article.title }}</td>
+      <td>{{ article.category_name }}</td>
+      <td>{{ article.content }}</td>
+      <td><a class="text-primary" href="{{ url_for('newsletter.update_article', article_id=article.id) }}">Edit</a> | <a class="text-danger" href="{{ url_for('newsletter.delete_article', article_id=article.id) }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

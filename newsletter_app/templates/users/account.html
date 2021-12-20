@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% set active_page = "account" %}
+{% block content %}
+    <form class="border border-light p-5" method="post" action="">
+      {{ form.hidden_tag() }}
+      <fieldset>
+          <div class="form-group">
+            {{ form.username.label }}
+            {% if form.username.errors %}
+              <div>
+                {{ form.username(class="form-control is-invalid") }}
+                {% for error in form.username.errors %}
+                  <small class="text-danger input-error-message" role="alert">{{ error }}</small>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.username(class="form-control") }}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.email.label }}
+            {% if form.email.errors %}
+              <div>
+                {{ form.email(class="form-control is-invalid") }}
+                {% for error in form.email.errors %}
+                  <span class="text-danger input-error-message" role="alert">{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.email(class="form-control") }}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info waves-effect my-4 btn-block") }}
+          </div>
+      </fieldset>
+    </form>
+{% endblock content %}

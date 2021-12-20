@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="d-flex justify-content-start">
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="container border border-light p-5">
+      <div class="d-flex justify-content-center">
+        <p><b>Are you sure you want to delete this {{ type }}?</b></p>
+      </div>
+      <div class="form-group d-flex justify-content-center">
+        {{ form.submit(class="btn btn-outline-danger waves-effect") }}
+        {{ form.cancel(class="btn btn-outline-default") }}
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}

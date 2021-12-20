@@ -1,0 +1,6 @@
+.ignore-css {
+  all: unset;
+}
+#login-button-wrapper span {
+  width: 100%;
+}

@@ -1,0 +1,9 @@
+__pycache__/
+newsletter_app/site.db
+venv/
+.vscode/
+*.pyc
+bin/
+include/
+lib/
+.idea/

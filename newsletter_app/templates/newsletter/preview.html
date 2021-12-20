@@ -1,0 +1,125 @@
+{% if sending_mail %}
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Email Newsletter Generator</title>
+    </head>
+    <body>
+      {% include "newsletter/full_newsletter.html" %}
+    </body>
+  </html>
+{% else %}
+  {% extends "layout.html" %}
+  {% set active_page = "manage" %}
+  {% block content %}
+  <div class="mb-5 border-bottom">
+    <form id="email-form" class="row mt-5" method="post" action="">
+      {{ form.hidden_tag() }}
+      <div class="col-12 col-lg-6">
+        <fieldset>
+          <div class="row form-group mb-1">
+            <div class="col-3">
+              {{ form.to.label }}
+            </div>
+            <div class="col-9">
+              {% if form.to.errors %}
+                <div>
+                  {{ form.to(class="form-control is-invalid") }}
+                  {% for error in form.to.errors %}
+                    <span class="text-danger input-error-message" role="alert">{{ error }}</span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                {{ form.to(class="form-control") }}
+              {% endif %}
+            </div>
+          </div>
+          <div class="row form-group mb-1">
+            <div class="col-3">
+              {{ form.cc.label }}
+            </div>
+            <div class="col-9">
+              {% if form.cc.errors %}
+                <div>
+                  {{ form.cc(class="form-control is-invalid") }}
+                  {% for error in form.cc.errors %}
+                    <span class="text-danger input-error-message" role="alert">{{ error }}</span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                {{ form.cc(class="form-control") }}
+              {% endif %}
+            </div>
+          </div>
+          <div class="row form-group mb-1">
+            <div class="col-3">
+              {{ form.bcc.label }}
+            </div>
+            <div class="col-9">
+              {% if form.bcc.errors %}
+                <div>
+                  {{ form.bcc(class="form-control is-invalid") }}
+                  {% for error in form.bcc.errors %}
+                    <span class="text-danger input-error-message" role="alert">{{ error }}</span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                {{ form.bcc(class="form-control") }}
+              {% endif %}
+            </div>
+          </div>
+          <div class="row form-group mb-1">
+            <div class="col-3">
+              {{ form.subject.label }}
+            </div>
+            <div class="col-9">
+              {% if form.subject.errors %}
+                <div>
+                  {{ form.subject(class="form-control is-invalid") }}
+                  {% for error in form.subject.errors %}
+                    <span class="text-danger input-error-message" role="alert">{{ error }}</span>
+                  {% endfor %}
+                </div>
+              {% else %}
+                {{ form.subject(class="form-control") }}
+              {% endif %}
+            </div>
+          </div>
+          {{ form.submit(class="btn btn-outline-primary mt-2 mb-5 btn-block", id='form-submit') }}
+        </fieldset>
+      </div>
+    </form>
+    <div class="row">
+    </div>
+  </div>
+
+  <div class="display-flex flex-column flex-align-center">
+    <div class="ignore-css">
+      {% include "newsletter/full_newsletter.html" %}
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="sendEmailModal" tabindex="-1" role="dialog" aria-labelledby="sendEmailModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sendEmailModalLabel">Send Email?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to send the newsletter?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success success" id="modal-confirm" onclick="event.preventDefault();document.getElementById('email-form').submit();">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+{% endif %}

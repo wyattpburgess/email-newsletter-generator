@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% set active_page = "manage" %}
+{% block content %}
+<div class="d-flex justify-content-start">
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="container border border-light p-5">
+      <div class="row">
+      <h2>{{ h2 }}</h2>
+      </div>
+      <div class="form-group row">
+        {{ form.name.label }}
+        {{ form.name(class_="form-control") }}
+      </div>
+      <div class="form-group d-flex justify-content-center">
+        {{ form.submit(class="btn btn-default") }}
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}

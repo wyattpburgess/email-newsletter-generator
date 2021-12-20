@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% set active_page = "manage" %}
+{% block content %}
+  <div class="mb-3 mt-3">
+  <a class="btn btn-outline-primary waves-effect" href="{{ url_for('newsletter.add_category') }}">Add Newsletter Section Heading</a>
+  </div>
+  <table id="manage_categories" class="table" width="100%">
+    <thead>
+      <tr>
+        <th>Order</th>
+        <th>Name</th>
+        <th class="no-sort">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+      <tr>
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td><div><a class="text-primary" href="{{ url_for('newsletter.update_category', category_id=category.id) }}">Edit</a> | <a class="text-danger" href="{{ url_for('newsletter.delete_category', category_id=category.id) }}">Delete</a></div></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

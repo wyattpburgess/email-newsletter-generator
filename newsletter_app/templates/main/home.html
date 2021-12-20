@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% set active_page = "home" %}
+{% block content %}
+    <h1>{{ page_header }}</h1>
+    <p>This application was designed and built to generate email newsletters.</p>
+    <p>Users can <a href="{{ url_for('newsletter.new_newsletter') }}">create new newsletters</a> from scratch or <a href="{{ url_for('newsletter.manage') }}">manage newsletters</a>
+    that are going to be sent out. Please use the following resources to create and manage your newsletters.</p>
+    <ul>
+        <li><a href="{{ url_for('newsletter.new_newsletter') }}">Create a new newsletter</a></li>
+        <li><a href="{{ url_for('newsletter.manage') }}">Manage newsletters</a></li>
+        <li><a href="{{ url_for('newsletter.manage_categories') }}">Manage newsletter sections</a></li>
+    </ul>
+{% endblock %}

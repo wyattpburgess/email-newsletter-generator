@@ -1,0 +1,61 @@
+<!--Main Navigation-->
+<header>
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      {% if current_user.is_authenticated %}
+        <a class="navbar-brand" href="{{ url_for('main.homepage') }}" title="Home" aria-label="Home">Newsletter Generator</a>
+      {% else %}
+        <a class="navbar-brand" href="{{ url_for('users.login') }}" title="Home" aria-label="Home">Newsletter Generator</a>
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if current_user.is_authenticated %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{ 'active' if active_page == 'home' else '' }}">
+              <a class="nav-link" href="{{ url_for('main.homepage') }}">Home</a>
+            </li>
+            <li class="nav-item {{ 'active' if active_page == 'new' else '' }}">
+              <a class="nav-link" href="{{ url_for('newsletter.new_newsletter') }}">Create New</a>
+            </li>
+            <li class="nav-item {{ 'active' if active_page == 'manage' else '' }}">
+              <a class="nav-link" href="{{ url_for('newsletter.manage') }}">Manage</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item {{ 'active' if active_page == 'account' else '' }}">
+              <a class="nav-link" href="{{ url_for('users.account') }}"><i class="fas fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Account</span></a>
+            </li>
+            <li class="nav-item {{ 'active' if active_page == 'register' else '' }}">
+              <a class="nav-link" href="{{ url_for('users.register') }}"><span>Register</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('users.logout') }}"><span>Logout</span></a>
+            </li>
+          </ul>
+        </div>
+      {% endif %}
+    </div>
+  </nav>
+
+  <div class="view intro-2">
+    <div class="full-bg-img">
+      <div class="mask rgba-black-strong flex-center">
+        <div class="container">
+          <div class="white-text text-center wow fadeInUp">
+            <h2>This Navbar isn't fixed</h2>
+            <h5>When you scroll down it will disappear</h5>
+            <br>
+            <p>Full page intro with background image will be always displayed in full screen mode, regardless
+              of device </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+<!--Main Navigation-->

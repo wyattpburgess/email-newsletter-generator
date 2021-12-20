@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% set active_page = "manage" %}
+
+{% block content %}
+  <table id="manage_newsletters" class="table" width="100%">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th class="no-sort">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for newsletter in newsletters %}
+      <tr>
+        <td>{{ newsletter.date.strftime('%b %d, %Y') }}</td>
+        <td>{{ newsletter.title }}</td>
+        <td>
+          <div>
+            <a class="text-info" href="{{ url_for('newsletter.preview', newsletter_id=newsletter.id) }}">Preview</a> | <a class="text-primary" href="{{ url_for('newsletter.update_newsletter', newsletter_id=newsletter.id) }}">Edit</a> | <a class="text-danger" href="{{ url_for('newsletter.delete_newsletter', newsletter_id=newsletter.id) }}">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

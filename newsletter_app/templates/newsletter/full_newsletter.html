@@ -1,0 +1,113 @@
+<table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+  <tbody>
+    <tr>
+      <td>
+        <div style="display:block;max-width:670px;margin:0 auto">
+          <div style="border-bottom:1px solid #f9f9f9;border-radius:20px;margin-bottom:7px">
+            <div style="border-bottom:1px solid #f5f5f5;border-radius:19px">
+              <div style="border-right:1px solid #f5f5f5;border-bottom:1px solid #f2f2f2;border-radius:18px">
+                <div style="border-right:1px solid #f2f2f2;border-bottom:1px solid #f0f0f0;border-radius:17px">
+                  <div style="border-right:1px solid #eee;border-bottom:1px solid #eee;border-radius:16px">
+
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+                      <tbody>
+                        <tr>
+                          <th
+                            style="text-align:left;font-weight:400;padding:15px;font-family:Helvetica,Arial,sans-serif;font-size:16px;color:#333;display:block;background-color:#fff;border-radius:15px;border:1px solid #e6e6e6;border-collapse:collapse">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+                              <tbody>
+                                <tr>
+                                  <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;text-align:right">
+                                    <span>{{ newsletter.date.strftime('%b %d, %Y') }}</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+                              <tbody>
+                                <tr>
+                                  <td align="center" style="padding-top:25px">
+                                    <h1 style="font-size:28px;font-family:Arial,Helvetica,sans-serif;line-height:30px;margin-top:0;margin-bottom:15px;margin-bottom:18px">
+                                      {{ newsletter.title }}
+                                    </h1>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+                              <tbody>
+                                <tr>
+                                  <td style="padding-top:20px">
+                                    <p style="line-height:22px;margin-top:0;margin-bottom:15px">
+                                      {{ newsletter.intro }}
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </th>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% for category, articles in articles|groupby('category') %}
+          <div style="border-bottom:1px solid #f9f9f9;border-radius:20px;margin-bottom:7px">
+            <div style="border-bottom:1px solid #f5f5f5;border-radius:19px">
+              <div style="border-right:1px solid #f5f5f5;border-bottom:1px solid #f2f2f2;border-radius:18px">
+                <div style="border-right:1px solid #f2f2f2;border-bottom:1px solid #f0f0f0;border-radius:17px">
+                  <div style="border-right:1px solid #eee;border-bottom:1px solid #eee;border-radius:16px">
+
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+                      <tbody>
+                        <tr>
+                          <th style="text-align:left;font-weight:400;font-family:Helvetica,Arial,sans-serif;font-size:16px;color:#333;display:block;background-color:#fff;border-radius:15px;border:1px solid #e6e6e6;border-collapse:collapse">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:15px">
+                                    <h3 style="font-family:Helvetica,Arial,sans-serif;font-size:20px;color:#1c7ff2;font-weight:700;margin-top:0;margin-bottom:0">
+                                      {{ articles[0].category_name }}
+                                    </h3>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            {% for article in articles|sort(attribute='date') %}
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+                              <tbody>
+                                <tr>
+                                  <td style="padding:15px">
+                                    <a style="text-decoration:none;" href="{{ article.link }}"><h2 style="font-family:Helvetica,Arial,sans-serif;font-size:19px;font-weight:700;;color:#000;margin-top:0;margin-bottom:15px;margin-right:0;margin-left:0">{{ article.title }}</h2>
+                                    <p style="line-height:22px;margin-top:0;margin-bottom:15px;color:black;">
+                                      {{ article.date.strftime('%b %d, %Y') }}
+                                    </p>
+                                    <p style="line-height:22px;margin-top:0;margin-bottom:15px;color:black;">
+                                      {{ article.content }}
+                                    </p>
+                                    <p style="line-height:22px;margin-top:0;margin-bottom:15px">Read More...</p></a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            {% endfor %}
+                          </th>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
